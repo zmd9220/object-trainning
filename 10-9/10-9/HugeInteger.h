@@ -17,7 +17,8 @@ public:
 	HugeInteger operator+(const HugeInteger&) const;
 	
 	HugeInteger operator+(int) const;
-
+	HugeInteger operator*(const HugeInteger&) const;
+	bool operator==(const HugeInteger&) const;
 	HugeInteger operator+(const std::string&) const;
 
 private:
