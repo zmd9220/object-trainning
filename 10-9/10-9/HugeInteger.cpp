@@ -77,3 +77,37 @@ ostream& operator<<(ostream& output, const HugeInteger& num)
 
 	return output;
 }
+
+HugeInteger HugeInteger::operator*(const HugeInteger & op2) const {
+	HugeInteger temp;
+	int t = 0;
+	for (int i = HugeInteger::digits - 1; i >= 0; i--, t++)
+	{
+		for (int j = HugeInteger::digits - 1; j >= 0; j--)
+		{
+			temp.integer[j - t] += (integer[j] - 48) * (op2.integer[i] - 48);
+		}
+	}
+
+	int carry = 0;
+	for (int i{ digits - 1 }; i >= 0; i--) {
+		temp.integer[i] = static_cast<short>(integer[i] + op2.integer[i] + carry);
+		if (temp.integer[i] > 9) {
+			temp.integer[i] %= 10;
+			carry = 1;
+		}
+		else {
+			carry = 0;
+		}
+	}
+	return temp;
+}
+
+bool HugeInteger::operator==(const HugeInteger & op2) const {
+	for (int i{ digits - 1 }; i >= 0; i--) {
+		if (integer[i] != op2.integer[i]) {
+			return false;
+		}
+	}
+	return true;
+}

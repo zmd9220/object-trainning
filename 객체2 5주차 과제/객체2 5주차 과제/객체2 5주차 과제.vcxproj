@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{778B2C85-89D9-4088-95EA-B902B63D6516}</ProjectGuid>
+    <ProjectGuid>{4CEC4710-8409-4CCA-AEE7-8187EF00268E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My108</RootNamespace>
+    <RootNamespace>객체25주차과제</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -146,11 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="motorVehicle.h" />
+    <ClCompile Include="Distance.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="motorVehicle.cpp" />
+    <ClInclude Include="Distance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,24 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HugeInteger.h">
+    <ClInclude Include="Myfather.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\카카오톡 받은 파일\hw4\HugeInteger.h">
-      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HugeInteger.cpp">
+    <ClCompile Include="Myfather.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\카카오톡 받은 파일\hw4\HugeInteger.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\카카오톡 받은 파일\hw4\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

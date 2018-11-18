@@ -2,6 +2,14 @@
 #include "HugeInteger.h"
 using namespace std;
 
+string Tnf(bool a)
+{
+	if (a == 1)
+		return "True";
+	else
+		return "False";
+}
+
 int main()
 {
 	HugeInteger n1{ 7654321 };
@@ -24,4 +32,9 @@ int main()
 
 	n5 = n2 + 10000;
 	cout << n2 << " + " << 10000 << " = " << n5 << "\n\n";
+
+	//n5 = n4 * n5;
+	//cout << "n5 * n4 = " << n5 << "\n\n";
+
+	cout << "(n5 == n1) = " << Tnf(n5 == n1) << endl;
 }
