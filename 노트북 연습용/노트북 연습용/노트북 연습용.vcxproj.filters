@@ -13,15 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\NewFilter1">
+      <UniqueIdentifier>{9e54ba3d-dba4-4649-b12a-ea71e7463859}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="listqueue.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="queue.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
     <ClCompile Include="나이트의 이동.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="양.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="양2.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="problem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="problem2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소스1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1-1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2-1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="3-1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="binarysearchtree1.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="bst2.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="graph2.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="graph3.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.cpp">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="3-1-1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Desktop\19-1 수업\problem2-1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="uecho_server.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="uecho_client.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bound_host1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bound_host2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
