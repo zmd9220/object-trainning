@@ -11,7 +11,7 @@ void outputLine(ostream&, const BookData &a) // for output
 		<< setw(15) << right << a.getPrice() << setw(15) << right << a.getPrice()*a.getQuantity() << endl;
 
 }
-char enterChoice(void) // choose selection
+char enterChoice(void)
 {
 	cout << setw(40) << setfill('-') << right << "---------------Main " << setw(40) << left << "Menu---------------" << endl;
 	cout << setw(40) << setfill(' ') << left << ":" << setw(40) << right << ":" << endl;
@@ -20,14 +20,14 @@ char enterChoice(void) // choose selection
 	cout << setw(10) << left << ":" << setw(60) << left << "<A>dd a new Book" << setw(10) << right << ":" << endl;
 	cout << setw(10) << left << ":" << setw(60) << left << "<D>elete an Book record" << setw(10) << right << ":" << endl;
 	cout << setw(10) << left << ":" << setw(60) << left << "<B>uild a File" << setw(10) << right << ":" << endl;
-	cout << setw(10) << left << ":" << setw(60) << left << "<P>urchase and sell" << setw(10) << right << ":" << endl;
 	cout << setw(10) << left << ":" << setw(60) << left << "<Q>uit" << setw(10) << right << ":" << endl;
 	cout << setw(40) << left << ":" << setw(40) << right << ":" << endl;
 	cout << setw(40) << setfill('-') << "-" << setw(40) << left << "-" << setfill(' ') << endl;
+
 	char choice;
 	cin >> choice;
 	return choice;
-}
+}// choose selection
 void showRecords(fstream& inBook) //show record on screen ok
 {
 	cout << setw(15) << left << "BkNum" << setw(35) << left << "Prod Name" << setw(15) << left << "Quantity"
@@ -42,7 +42,7 @@ void showRecords(fstream& inBook) //show record on screen ok
 
 	double total = 0;
 
-	while (inBook && !inBook.eof())
+	while (inBook && !inBook.eof()) //
 	{
 		if (book.getProductNumber() != 0)
 		{
@@ -58,19 +58,19 @@ void showRecords(fstream& inBook) //show record on screen ok
 	//updateFile.seekp((prodno - 1) * sizeof(BookData)); //output??
 	
 }
-void updateRecord(fstream& inBook) //update a book ok
+void updateRecord(fstream& updateFile) //update a book ok
 {
 	cout << setw(40) << setfill('-') << right << "EDIT " << setw(40) << left << "RECORD" << endl << endl
 		<< "Enter prodno number to edit : ";
 	int c;
 	cin >> c;
 	cout << endl << setw(20) << setfill(' ') << left << "ProdNo" << setw(20) << right << "Prod Name" << setw(20) << left << "  Quantity" << setw(20) << left << "Price" << endl;
-	//fstream inBook("book.dat", ios::out | ios::in | ios::binary);
+	//fstream inBook("book.dat", ios::out | ios::in );
 	//iostream 변수 파일을 읽고?
-	inBook.seekg((c - 1) * sizeof(BookData)); //input
+	updateFile.seekg(c - 1 * sizeof(BookData)); //input
 	BookData book;
 
-	inBook.read(reinterpret_cast<char *>(&book), sizeof(BookData));
+	updateFile.read(reinterpret_cast<char *>(&book), sizeof(BookData));
 	if (book.getProductNumber() != 0) {
 		outputLine(cout, book);
 
@@ -82,16 +82,18 @@ void updateRecord(fstream& inBook) //update a book ok
 		book.setProductName(pro);
 		book.setQuantity(quan);
 		book.setPrice(pri);
-		inBook.seekp((c - 1) * sizeof(BookData));
-		inBook.write(reinterpret_cast<const char*>(&book), sizeof(BookData));
+		outputLine(cout, book);
+		updateFile.seekp(c - 1 * sizeof(BookData));
+		updateFile.write(reinterpret_cast<const char*>(&book), sizeof(BookData));
 		cout << "Product #" << book.getProductNumber() << "Updated.\n";
 	}
 	else
 	{
 		cerr << "Product #" << c << " has no information." << endl;
 	}
+
 }
-void newRecord(fstream& inBook) // add a new book
+void newRecord(fstream& insertInFile) // add a new book
 {
 
 	while (1) {
@@ -101,16 +103,18 @@ void newRecord(fstream& inBook) // add a new book
 		if (c == 0)
 			break;
 		
-		//fstream inBook("book.dat", ios::out | ios::in | ios::binary);
-
+		//fstream insertInFile;//("book.txt", ios::out);
+		//insertInFile.open("book.txt", ios::out | ios::in);
 		//iostream 변수 파일을 읽고?
-		inBook.seekg((c - 1) * sizeof(BookData)); //input
+		insertInFile.seekg(c - 1 * sizeof(BookData)); //input
+		
 
 		BookData book;
 
 
-		inBook.read(reinterpret_cast<char *>(&book), sizeof(BookData));
-		if (book.getProductNumber() == 0) {
+		insertInFile.read(reinterpret_cast<char*>(&book), sizeof(BookData));
+		if (book.getProductNumber() == 0) 
+		{
 			cout << "Enter New productName, New quantity, New price\n? ";
 			string pro;
 			int quan;
@@ -120,16 +124,18 @@ void newRecord(fstream& inBook) // add a new book
 			book.setQuantity(quan);
 			book.setPrice(pri);
 			book.setProductNumber(c);
-			inBook.seekp((c - 1) * sizeof(BookData));
+			outputLine(cout, book);
+			insertInFile.seekp(c - 1 * sizeof(BookData));
 
-			inBook.write(reinterpret_cast<const char*>(&book), sizeof(BookData));
+			insertInFile.write(reinterpret_cast<const char*>(&book), sizeof(BookData));
 		}
 		else
 		{
 			cerr << "Prodno# already Exist" << endl;
 		}
-		
+	
 	}
+
 	
 }
 void deleteRecord(fstream& inBook) //delete an book record
@@ -141,20 +147,22 @@ void deleteRecord(fstream& inBook) //delete an book record
 	cout << endl << setw(20) << setfill(' ') << left << "ProdNo" << setw(20) << right << "Prod Name" << setw(20) << left << "  Quantity" << setw(20) << left << "Price" << endl;
 	//fstream inBook("book.dat", ios::out | ios::in | ios::binary);
 	//iostream 변수 파일을 읽고?
-	inBook.seekg((c - 1) * sizeof(BookData)); //input
+	inBook.seekg(c - 1 * sizeof(BookData)); //input
 	BookData book;
 
 	inBook.read(reinterpret_cast<char *>(&book), sizeof(BookData));
 	if (book.getProductNumber() != 0) {
 		outputLine(cout, book);
 		BookData blankBook;
-		inBook.seekp((c - 1) * sizeof(BookData)); 
+		inBook.seekp(c - 1 * sizeof(BookData));
 		inBook.write(reinterpret_cast<const char*>(&blankBook), sizeof(BookData));
 	}
 	else
 	{
 		cerr << "Product #" << c << " is empty." << endl;
 	}
+
+
 }
 /*void buildFile() // build a file
 {
@@ -170,7 +178,7 @@ void SellBuy(fstream& inBook) // purchase and sell
 	cout << endl << setw(20) << setfill(' ') << left << "ProdNo" << setw(20) << right << "Prod Name" << setw(20) << left << "  Quantity" << setw(20) << left << "Price" << endl;
 	//fstream inBook("book.dat", ios::out | ios::in | ios::binary);
 	//iostream 변수 파일을 읽고?
-	inBook.seekg((c - 1) * sizeof(BookData)); //input
+	inBook.seekg(c - 1 * sizeof(BookData)); //input
 	BookData book;
 
 	inBook.read(reinterpret_cast<char *>(&book), sizeof(BookData));
@@ -182,14 +190,16 @@ void SellBuy(fstream& inBook) // purchase and sell
 		int x;
 		cin >> x;
 		book.setQuantity(y + x);
-		inBook.seekp((c - 1) * sizeof(BookData));
+		inBook.seekp(c - 1 * sizeof(BookData));
 		inBook.write(reinterpret_cast<char *>(&book), sizeof(BookData));
 		cout << "Product #" << book.getProductNumber() << "Updated.\n";
 	}
 	else
 	{
-		cerr << "Product #" << c << " has no information." << endl;
+		cerr << "Product #" << c << "has no information." << endl;
 	}
+
+	inBook.close();
 
 }
 
@@ -201,7 +211,7 @@ void buildFile()
 	cout << "\nEnter number of records :";
 	cin >> x;
 
-	ofstream outCredit1("book.dat", ios::out | ios::binary);
+	ofstream outCredit1("book.txt", ios::out );
 
 	if (!outCredit1)
 	{
@@ -221,16 +231,16 @@ void buildFile()
 }
 int main()
 {	
-	fstream inOutRecord{ "book.dat", ios::out | ios::in | ios::binary | ios::trunc };
+	fstream inOutRecord{ "book.txt", ios::in | ios::out | ios::binary };
 	if (!inOutRecord)
 	{
 		cerr << "File could not be opened." << endl;
 		exit(EXIT_FAILURE);
 	}
-	char a;
-	while ((a=enterChoice()) != 'q') 
+	char b;
+	while ((b = enterChoice()) != 'q')
 	{
-		switch (a)
+		switch (b)
 		{
 		case 's':
 			showRecords(inOutRecord);
@@ -250,9 +260,11 @@ int main()
 		case 'b':
 			buildFile();
 			break;
+		default:
+			cerr << "Incorrect choice" << endl;
+			break;
 		}
-		
-
+		inOutRecord.clear();
 	}
 	
 
